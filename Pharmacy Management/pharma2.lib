@@ -1,0 +1,36 @@
+choiceInput proc
+Choice:
+       mov dx, offset Msg1
+        call Coutstr
+    mov ah, 01h
+    int 21h
+    cmp al, '1'
+    je AddLabel 
+    cmp al, '2'
+    je ShowLabel 
+    cmp al, '3'
+    je EndLabel 
+    jmp  Default
+
+AddLabel:
+    jmp addDrug
+ShowLabel:
+    jmp ShowData
+
+EndLabel:
+    jmp Exit
+
+Default:
+    mov dx, offset Msg11
+    call Coutstr
+    mov dx,offset newline
+    call Coutstr
+    jmp Choice
+ret
+choiceInput endp
+
+Coutstr proc
+    mov ah, 09h
+    int 21h
+    ret
+Coutstr endp
